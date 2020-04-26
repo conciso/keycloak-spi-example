@@ -1,0 +1,6 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Shell scripts need to always have nix line endings
+*.sh text eol=lf
+*.cli text eol=lf
