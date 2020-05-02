@@ -1,7 +1,7 @@
 package com.github.conciso.keycloak.email;
 
 import org.jboss.logging.Logger;
-import org.keycloak.email.DefaultEmailSenderProvider;
+import org.keycloak.email.DefaultEmailSenderProviderFactory;
 import org.keycloak.email.EmailException;
 import org.keycloak.email.EmailSenderProvider;
 import org.keycloak.models.KeycloakSession;
@@ -24,7 +24,7 @@ public class EmailPrefixSenderProvider implements EmailSenderProvider {
   public void send(Map<String, String> config, UserModel user, String subject, String textBody, String htmlBody) throws EmailException {
     String prefixedSubject = subjectPrefix + subject;
     logger.infov("Sending email with prefixed subject: {0}", prefixedSubject);
-    EmailSenderProvider defaultProvider = new DefaultEmailSenderProvider(session);
+    EmailSenderProvider defaultProvider = new DefaultEmailSenderProviderFactory().create(session);
     /*
       You can also lookup other providers from the session.
 
