@@ -31,7 +31,7 @@ public class EmailPrefixSenderProviderFactory implements EmailSenderProviderFact
     }
 
     public void close() {
-      logger.debugv("{0} initialzed", getClass().getSimpleName());
+      logger.debugv("{0} closed", getClass().getSimpleName());
     }
 
     public String getId() {
@@ -39,6 +39,7 @@ public class EmailPrefixSenderProviderFactory implements EmailSenderProviderFact
     }
 
     public Map<String, String> getOperationalInfo() {
-        return Map.of(CONFIG_SUBJECT_PREFIX, config.get(CONFIG_SUBJECT_PREFIX));
+      String prefix = config.get(CONFIG_SUBJECT_PREFIX, "");
+      return Map.of(CONFIG_SUBJECT_PREFIX, prefix);
     }
 }
