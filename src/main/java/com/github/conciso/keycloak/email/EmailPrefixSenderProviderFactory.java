@@ -35,7 +35,7 @@ public class EmailPrefixSenderProviderFactory implements EmailSenderProviderFact
     }
 
     public String getId() {
-        return "example-prefix";
+        return "email-prefix";
     }
 
     public Map<String, String> getOperationalInfo() {

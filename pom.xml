@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.conciso</groupId>
-    <artifactId>keycloak-examples-spi-impl</artifactId>
+    <artifactId>keycloak-spi-example</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <name>Keycloak examples - SPI implementation</name>

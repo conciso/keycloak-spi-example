@@ -2,7 +2,7 @@ embed-server --server-config=standalone-ha.xml --std-out=echo
 
 batch
 
-/subsystem=keycloak-server/:list-add(name=providers,value="module:com.github.conciso.keycloak-examples-spi-impl.provider")
+/subsystem=keycloak-server/:list-add(name=providers,value="module:com.github.conciso.keycloak-spi-example.provider")
 
 /subsystem=keycloak-server/spi=emailSender:add
 /subsystem=keycloak-server/spi=emailSender/provider=default:add(enabled=true)
