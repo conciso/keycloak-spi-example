@@ -1,0 +1,16 @@
+version: '3'
+services:
+  keycloak:
+    container_name: keycloak
+    image: conciso/keycloak-spi-example
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      SUBJECT_PREFIX: SSO
+    ports:
+      - 8080:8080
+  mail:
+    container_name: mail
+    image: djfarrelly/maildev
+    ports:
+      - 9080:80
