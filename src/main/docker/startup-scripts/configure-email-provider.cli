@@ -6,7 +6,7 @@ batch
 
 /subsystem=keycloak-server/spi=emailSender:add
 /subsystem=keycloak-server/spi=emailSender/provider=default:add(enabled=true)
-/subsystem=keycloak-server/spi=emailSender/provider=email-prefix:add(properties={subjectPrefix => "KEYCLOAK: "},enabled=true)
+/subsystem=keycloak-server/spi=emailSender/provider=email-prefix:add(properties={subjectPrefix => "${env.SUBJECT_PREFIX:KEYCLOAK}:"},enabled=true)
 /subsystem=keycloak-server/spi=emailSender:write-attribute(name=default-provider, value=email-prefix)
 
 run-batch
