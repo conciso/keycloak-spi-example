@@ -1,6 +1,5 @@
 package com.github.conciso.keycloak.email;
 
-import org.jboss.logging.Logger;
 import org.keycloak.Config;
 import org.keycloak.email.EmailSenderProvider;
 import org.keycloak.email.EmailSenderProviderFactory;
@@ -12,34 +11,24 @@ import java.util.Map;
 
 public class EmailPrefixSenderProviderFactory implements EmailSenderProviderFactory, ServerInfoAwareProviderFactory {
 
-    private static final Logger logger = Logger.getLogger(EmailPrefixSenderProviderFactory.class);
-    private static final String CONFIG_SUBJECT_PREFIX = "subjectPrefix";
+  public EmailSenderProvider create(KeycloakSession session) {
+    return new EmailPrefixSenderProvider();
+  }
 
-    private Config.Scope config;
+  public void init(Config.Scope config) {
+  }
 
-    public EmailSenderProvider create(KeycloakSession session) {
-        String subjectPrefix = config.get(CONFIG_SUBJECT_PREFIX);
-        return new EmailPrefixSenderProvider(session, subjectPrefix);
-    }
+  public void postInit(KeycloakSessionFactory factory) {
+  }
 
-    public void init(Config.Scope config) {
-        this.config = config;
-    }
+  public void close() {
+  }
 
-    public void postInit(KeycloakSessionFactory factory) {
-        logger.infov("{0} initialzed", getClass().getSimpleName());
-    }
+  public String getId() {
+    return "email-prefix";
+  }
 
-    public void close() {
-      logger.debugv("{0} closed", getClass().getSimpleName());
-    }
-
-    public String getId() {
-        return "email-prefix";
-    }
-
-    public Map<String, String> getOperationalInfo() {
-      String prefix = config.get(CONFIG_SUBJECT_PREFIX, "");
-      return Map.of(CONFIG_SUBJECT_PREFIX, prefix);
-    }
+  public Map<String, String> getOperationalInfo() {
+    return Map.of();
+  }
 }

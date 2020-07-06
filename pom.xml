@@ -110,20 +110,6 @@
             <version>${version.keycloak}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-services</artifactId>
-            <version>${version.keycloak}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>jboss-logging</artifactId>
-            <version>3.4.1.Final</version>
-            <scope>provided</scope>
-        </dependency>
-
     </dependencies>
 
 </project>
