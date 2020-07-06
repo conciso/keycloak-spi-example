@@ -1,6 +1,7 @@
 package com.github.conciso.keycloak.email;
 
 import org.keycloak.Config;
+import org.keycloak.email.DefaultEmailSenderProviderFactory;
 import org.keycloak.email.EmailSenderProvider;
 import org.keycloak.email.EmailSenderProviderFactory;
 import org.keycloak.models.KeycloakSession;
@@ -12,7 +13,14 @@ import java.util.Map;
 public class EmailPrefixSenderProviderFactory implements EmailSenderProviderFactory, ServerInfoAwareProviderFactory {
 
   public EmailSenderProvider create(KeycloakSession session) {
-    return new EmailPrefixSenderProvider();
+
+    /*
+    EmailSenderProvider defaultProvider = session.getProvider(EmailSenderProvider.class, "default");
+    */
+
+    EmailSenderProviderFactory factory = new DefaultEmailSenderProviderFactory();
+    EmailSenderProvider defaultProvider = factory.create(session);
+    return new EmailPrefixSenderProvider(defaultProvider);
   }
 
   public void init(Config.Scope config) {
