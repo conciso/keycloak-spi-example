@@ -12,6 +12,10 @@ import java.util.Map;
 
 public class EmailPrefixSenderProviderFactory implements EmailSenderProviderFactory, ServerInfoAwareProviderFactory {
 
+  private static final String CONFIG_SUBJECT_PREFIX = "subjectPrefix";
+
+  private Config.Scope config;
+
   public EmailSenderProvider create(KeycloakSession session) {
 
     /*
@@ -20,10 +24,14 @@ public class EmailPrefixSenderProviderFactory implements EmailSenderProviderFact
 
     EmailSenderProviderFactory factory = new DefaultEmailSenderProviderFactory();
     EmailSenderProvider defaultProvider = factory.create(session);
-    return new EmailPrefixSenderProvider(defaultProvider);
+
+    String subjectPrefix = config.get(CONFIG_SUBJECT_PREFIX, "");
+
+    return new EmailPrefixSenderProvider(defaultProvider, subjectPrefix);
   }
 
   public void init(Config.Scope config) {
+    this.config = config;
   }
 
   public void postInit(KeycloakSessionFactory factory) {
@@ -37,6 +45,7 @@ public class EmailPrefixSenderProviderFactory implements EmailSenderProviderFact
   }
 
   public Map<String, String> getOperationalInfo() {
-    return Map.of();
+    String prefix = config.get(CONFIG_SUBJECT_PREFIX, "");
+    return Map.of(CONFIG_SUBJECT_PREFIX, prefix);
   }
 }

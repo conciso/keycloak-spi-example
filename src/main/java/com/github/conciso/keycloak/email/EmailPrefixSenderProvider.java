@@ -12,14 +12,19 @@ public class EmailPrefixSenderProvider implements EmailSenderProvider {
   private static final Logger logger = Logger.getLogger(EmailPrefixSenderProvider.class);
 
   private final EmailSenderProvider defaultProvider;
+  private final String subjectPrefix;
 
-  EmailPrefixSenderProvider(EmailSenderProvider defaultProvider) {
+  EmailPrefixSenderProvider(EmailSenderProvider defaultProvider, String subjectPrefix) {
     this.defaultProvider = defaultProvider;
+    this.subjectPrefix = subjectPrefix;
   }
 
   public void send(Map<String, String> config, UserModel user, String subject, String textBody, String htmlBody) throws EmailException {
-    logger.infov("Sending email");
-    defaultProvider.send(config, user, subject, textBody, htmlBody);
+
+    String prefixedSubject = subjectPrefix + subject;
+    logger.infov("Sending email with prefixed subject: {0}", prefixedSubject);
+
+    defaultProvider.send(config, user, prefixedSubject, textBody, htmlBody);
   }
 
   public void close() {
