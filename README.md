@@ -4,6 +4,10 @@ A simple example project for implementing Keycloak SPIs
 
 [![Build Status](https://travis-ci.org/conciso/keycloak-spi-example.svg?branch=master)](https://travis-ci.org/conciso/keycloak-spi-example)
 
+## Webinar
+
+This demo is also available as a [free webinar](https://conciso.de/blog/2020/07/16/webinar-mit-spis-keycloak-erweitern/) (in German).
+
 ## Build
 
 For a build you need to have set up Maven, Java, and Docker.
